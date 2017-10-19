@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kosalgeek.asynctask.*;
@@ -16,6 +17,7 @@ public class LoginTwoActivity extends AppCompatActivity implements AsyncResponse
 
     private EditText username, password;
     private Button btnLogin;
+    final TextView lRegisterHere = (TextView) findViewById(R.id.lRegisterHere);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class LoginTwoActivity extends AppCompatActivity implements AsyncResponse
         password = (EditText) findViewById(R.id.password_id);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
+        lRegisterHere.setOnClickListener(this);
 
     }
 
@@ -38,8 +41,10 @@ public class LoginTwoActivity extends AppCompatActivity implements AsyncResponse
         postData.put("txtUsername", username.getText().toString());
         postData.put("txtPassword", password.getText().toString());
 
-        PostResponseAsyncTask loginTask = new PostResponseAsyncTask(this, postData);
+        PostResponseAsyncTask loginTask = new PostResponseAsyncTask(this,this);
         loginTask.execute("http://cq7243tk.000webhostapp.com/login.php");
+
+
     }
 
 
